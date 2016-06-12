@@ -1,18 +1,19 @@
-<h1>SuggestionBox</h1>
-<h2>{{ post.title }}</h2>
-<p><span class="glyphicon glyphicon-plus-sign" ng-click="upVote(post)"></span>Upvotes: {{ post.upvotes }}</p>
-
-<div ng-repeat="comment in post.comments | orderBy: 'upvotes':true">
-  <h3>{{ comment.body }}</h3>
-  <p><span class="glyphicon glyphicon-plus-sign" ng-click="upVote(comment)"></span>Upvotes: {{ comment.upvotes }}</p>
+<div class="post">
+  <h2>{{ post.title }}</h2>
+  <p><span class="icon glyphicon glyphicon-plus-sign" ng-click="upVote(post)"></span>Upvotes: {{ post.upvotes }}</p>
 </div>
 
-<div class="suggestion-form">
-  <form ng-submit="addComment()">
-    <h3>Submit your suggestion</h3>
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Your idea" ng-model="body">
-    </div>
-    <button type="submit" class="btn btn-primary">Suggest</button>
-  </form>
+<div class="comments-container">
+  <div class="comment" ng-repeat="comment in post.comments | orderBy: 'upvotes':true">
+    <h3>{{ comment.body }}</h3>
+    <p><span class="icon glyphicon glyphicon-plus-sign" ng-click="upVote(comment)"></span>Upvotes: {{ comment.upvotes }}</p>
+  </div>
 </div>
+
+<form ng-submit="addComment()">
+  <h3>Comment</h3>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Your comment" ng-model="body">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
